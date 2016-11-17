@@ -22,9 +22,16 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"clock" ofType:@"png"];
-    NSData *data = [NSData dataWithContentsOfFile:path];
-    self.imageView.image = UIAnimatedImageWithAPNGData(data, 1.4);
+    self.imageView.image = [UIImage animatedImageNamed:@"clock"];
+    self.imageView.animationDuration = 10.f;
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{        
+        NSData *data = [APNGImageSerialization dataWithImages:self.imageView.image.images
+                                                     duration:5
+                                                        error:NULL];
+        UIImage *image = UIAnimatedImageWithAPNGData(data);
+        self.imageView.image = image;
+    });
 }
 
 - (void)didReceiveMemoryWarning

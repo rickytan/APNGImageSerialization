@@ -22,8 +22,8 @@
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
-		9C70A8311DDD8F1900CE8403 /* o_sample.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C70A82F1DDD8F1900CE8403 /* o_sample.png */; };
-		9C70A8321DDD8F1900CE8403 /* clock.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C70A8301DDD8F1900CE8403 /* clock.png */; };
+		9C70A8311DDD8F1900CE8403 /* o_sample@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C70A82F1DDD8F1900CE8403 /* o_sample@2x.png */; };
+		9C70A8321DDD8F1900CE8403 /* clock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C70A8301DDD8F1900CE8403 /* clock@2x.png */; };
 		9C70A8341DDD997B00CE8403 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C70A8331DDD997B00CE8403 /* ImageIO.framework */; };
 		C2138FDCB7F6E62769588C45 /* libPods-APNGImageSerialization_Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C4137EF5AD1E6BBE160353EB /* libPods-APNGImageSerialization_Tests.a */; };
 /* End PBXBuildFile section */
@@ -63,8 +63,8 @@
 		6003F5BB195388D20070C39A /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		9C70A82F1DDD8F1900CE8403 /* o_sample.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = o_sample.png; sourceTree = "<group>"; };
-		9C70A8301DDD8F1900CE8403 /* clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clock.png; sourceTree = "<group>"; };
+		9C70A82F1DDD8F1900CE8403 /* o_sample@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "o_sample@2x.png"; sourceTree = "<group>"; };
+		9C70A8301DDD8F1900CE8403 /* clock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "clock@2x.png"; sourceTree = "<group>"; };
 		9C70A8331DDD997B00CE8403 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		C22C472ED21565621DD6097C /* Pods-APNGImageSerialization_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-APNGImageSerialization_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-APNGImageSerialization_Example/Pods-APNGImageSerialization_Example.release.xcconfig"; sourceTree = "<group>"; };
 		C4137EF5AD1E6BBE160353EB /* libPods-APNGImageSerialization_Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-APNGImageSerialization_Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -149,14 +149,14 @@
 		6003F593195388D20070C39A /* Example for APNGImageSerialization */ = {
 			isa = PBXGroup;
 			children = (
-				9C70A82F1DDD8F1900CE8403 /* o_sample.png */,
-				9C70A8301DDD8F1900CE8403 /* clock.png */,
+				9C70A8301DDD8F1900CE8403 /* clock@2x.png */,
 				6003F59C195388D20070C39A /* RTAppDelegate.h */,
 				6003F59D195388D20070C39A /* RTAppDelegate.m */,
 				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
 				6003F5A5195388D20070C39A /* RTViewController.h */,
 				6003F5A6195388D20070C39A /* RTViewController.m */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
+				9C70A82F1DDD8F1900CE8403 /* o_sample@2x.png */,
 				6003F594195388D20070C39A /* Supporting Files */,
 			);
 			name = "Example for APNGImageSerialization";
@@ -287,10 +287,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */,
-				9C70A8321DDD8F1900CE8403 /* clock.png in Resources */,
+				9C70A8321DDD8F1900CE8403 /* clock@2x.png in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
-				9C70A8311DDD8F1900CE8403 /* o_sample.png in Resources */,
+				9C70A8311DDD8F1900CE8403 /* o_sample@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

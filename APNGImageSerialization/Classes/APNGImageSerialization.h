@@ -33,26 +33,55 @@ FOUNDATION_EXTERN NSString *const APNGImageErrorDomain;
  *
  *  @return A animated UIImage
  */
+UIKIT_EXTERN __attribute((overloadable)) UIImage * UIAnimatedImageWithAPNGData(NSData *data);
+
 UIKIT_EXTERN __attribute((overloadable)) UIImage * UIAnimatedImageWithAPNGData(NSData *data, NSTimeInterval duration);
 UIKIT_EXTERN __attribute((overloadable)) UIImage * UIAnimatedImageWithAPNGData(NSData *data, NSTimeInterval duration, CGFloat scale, NSError * __autoreleasing * error);
 
 
 
-UIKIT_EXTERN NSData * UIImageAPNGRepresentation(UIImage *image);
+UIKIT_EXTERN NSData * __nullable UIImageAPNGRepresentation(UIImage * __nonnull image);
 
 
 
 @interface APNGImageSerialization : NSObject
 
-+ (UIImage *)animatedImageWithData:(NSData *)data
-                             error:(NSError * __autoreleasing * )error;
-+ (UIImage *)animatedImageWithData:(NSData *)data
-                             scale:(CGFloat)scale
-                             error:(NSError * __autoreleasing * )error;
-
 + (NSData *)dataWithAnimatedImage:(UIImage *)image
                             error:(NSError * __autoreleasing * )error;
+
 + (NSData *)dataWithImages:(NSArray <UIImage *> *)images
+                  duration:(NSTimeInterval)duration
                      error:(NSError *__autoreleasing *)error;
+
++ (NSData *)dataWithImages:(NSArray <UIImage *> *)images
+                  duration:(NSTimeInterval)duration
+               repeatCount:(NSInteger)repeatCount
+                     error:(NSError *__autoreleasing *)error;
+@end
+
+
+@interface UIImage (Animated_PNG)
+
+/**
+ *  Load and return a animated @c UIImage from main bundle, **DO NOT** put your apng file into Image Assets Catalog,
+ *  it is @b NOT supported !
+ *
+ *  @param name image name with out @b @2x @b @3x subfix
+ *
+ *  @return A new animated image
+ */
++ (UIImage *)animatedImageNamed:(NSString *)name;
+
++ (UIImage *)apng_animatedImageWithAPNGData:(NSData *)data;
+
++ (UIImage *)apng_animatedImageWithAPNGData:(NSData *)data
+                                   duration:(NSTimeInterval)duration;
+
++ (UIImage *)apng_animatedImageWithAPNGData:(NSData *)data
+                                      scale:(CGFloat)scale;
+
++ (UIImage *)apng_animatedImageWithAPNGData:(NSData *)data
+                                   duration:(NSTimeInterval)duration
+                                      scale:(CGFloat)scale;
 
 @end
