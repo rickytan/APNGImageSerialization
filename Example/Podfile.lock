@@ -1,0 +1,16 @@
+PODS:
+  - APNGImageSerialization (0.1.0)
+
+DEPENDENCIES:
+  - APNGImageSerialization (from `../`)
+
+EXTERNAL SOURCES:
+  APNGImageSerialization:
+    :path: ../
+
+SPEC CHECKSUMS:
+  APNGImageSerialization: c9b4a9ad50b7ff43b44e37a775c36ac87d1eac65
+
+PODFILE CHECKSUM: 3a03303f46554756e5081c7ec29efe1ac817ff32
+
+COCOAPODS: 1.1.1

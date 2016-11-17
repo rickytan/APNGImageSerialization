@@ -6,9 +6,12 @@
 //  Copyright (c) 2016 Ricky Tan. All rights reserved.
 //
 
+#import <APNGImageSerialization/APNGImageSerialization.h>
+
 #import "RTViewController.h"
 
 @interface RTViewController ()
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
 @end
 
@@ -18,6 +21,10 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"clock" ofType:@"png"];
+    NSData *data = [NSData dataWithContentsOfFile:path];
+    self.imageView.image = UIAnimatedImageWithAPNGData(data, 1.4);
 }
 
 - (void)didReceiveMemoryWarning

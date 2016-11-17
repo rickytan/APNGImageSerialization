@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4ED8F5D16D47B4A16B7959E0 /* libPods-APNGImageSerialization_Example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F58D09902899A634C2B462C /* libPods-APNGImageSerialization_Example.a */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
@@ -20,9 +21,11 @@
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
-		6C27A4D5BF459598F8AE05F4 /* Pods_APNGImageSerialization_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CE056B1ED703F31EA6E4AF1 /* Pods_APNGImageSerialization_Example.framework */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
-		E103ECEC1ACB94FF718DEE5E /* Pods_APNGImageSerialization_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CAAEDB062D379131D5E2CDD /* Pods_APNGImageSerialization_Tests.framework */; };
+		9C70A8311DDD8F1900CE8403 /* o_sample.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C70A82F1DDD8F1900CE8403 /* o_sample.png */; };
+		9C70A8321DDD8F1900CE8403 /* clock.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C70A8301DDD8F1900CE8403 /* clock.png */; };
+		9C70A8341DDD997B00CE8403 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C70A8331DDD997B00CE8403 /* ImageIO.framework */; };
+		C2138FDCB7F6E62769588C45 /* libPods-APNGImageSerialization_Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C4137EF5AD1E6BBE160353EB /* libPods-APNGImageSerialization_Tests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,9 +40,8 @@
 
 /* Begin PBXFileReference section */
 		0A22F3AF5A684E6DCC634373 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		0F58D09902899A634C2B462C /* libPods-APNGImageSerialization_Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-APNGImageSerialization_Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C7446E508E058BC07B1E79F /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
-		4CE056B1ED703F31EA6E4AF1 /* Pods_APNGImageSerialization_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_APNGImageSerialization_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		5CAAEDB062D379131D5E2CDD /* Pods_APNGImageSerialization_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_APNGImageSerialization_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DEF27BC5F1D3616DBAB5FFD /* Pods-APNGImageSerialization_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-APNGImageSerialization_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-APNGImageSerialization_Tests/Pods-APNGImageSerialization_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* APNGImageSerialization_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = APNGImageSerialization_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -61,7 +63,11 @@
 		6003F5BB195388D20070C39A /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		9C70A82F1DDD8F1900CE8403 /* o_sample.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = o_sample.png; sourceTree = "<group>"; };
+		9C70A8301DDD8F1900CE8403 /* clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clock.png; sourceTree = "<group>"; };
+		9C70A8331DDD997B00CE8403 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		C22C472ED21565621DD6097C /* Pods-APNGImageSerialization_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-APNGImageSerialization_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-APNGImageSerialization_Example/Pods-APNGImageSerialization_Example.release.xcconfig"; sourceTree = "<group>"; };
+		C4137EF5AD1E6BBE160353EB /* libPods-APNGImageSerialization_Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-APNGImageSerialization_Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C603576B5DC5B58B4FAB4519 /* Pods-APNGImageSerialization_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-APNGImageSerialization_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-APNGImageSerialization_Example/Pods-APNGImageSerialization_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		EF2560236B306EFB607517B5 /* Pods-APNGImageSerialization_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-APNGImageSerialization_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-APNGImageSerialization_Tests/Pods-APNGImageSerialization_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		F790E77FE4BEC41103296F75 /* APNGImageSerialization.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = APNGImageSerialization.podspec; path = ../APNGImageSerialization.podspec; sourceTree = "<group>"; };
@@ -72,10 +78,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C70A8341DDD997B00CE8403 /* ImageIO.framework in Frameworks */,
 				6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */,
 				6003F592195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F58E195388D20070C39A /* Foundation.framework in Frameworks */,
-				6C27A4D5BF459598F8AE05F4 /* Pods_APNGImageSerialization_Example.framework in Frameworks */,
+				4ED8F5D16D47B4A16B7959E0 /* libPods-APNGImageSerialization_Example.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,7 +93,7 @@
 				6003F5B0195388D20070C39A /* XCTest.framework in Frameworks */,
 				6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */,
-				E103ECEC1ACB94FF718DEE5E /* Pods_APNGImageSerialization_Tests.framework in Frameworks */,
+				C2138FDCB7F6E62769588C45 /* libPods-APNGImageSerialization_Tests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -128,12 +135,13 @@
 		6003F58C195388D20070C39A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9C70A8331DDD997B00CE8403 /* ImageIO.framework */,
 				6003F58D195388D20070C39A /* Foundation.framework */,
 				6003F58F195388D20070C39A /* CoreGraphics.framework */,
 				6003F591195388D20070C39A /* UIKit.framework */,
 				6003F5AF195388D20070C39A /* XCTest.framework */,
-				4CE056B1ED703F31EA6E4AF1 /* Pods_APNGImageSerialization_Example.framework */,
-				5CAAEDB062D379131D5E2CDD /* Pods_APNGImageSerialization_Tests.framework */,
+				0F58D09902899A634C2B462C /* libPods-APNGImageSerialization_Example.a */,
+				C4137EF5AD1E6BBE160353EB /* libPods-APNGImageSerialization_Tests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -141,6 +149,8 @@
 		6003F593195388D20070C39A /* Example for APNGImageSerialization */ = {
 			isa = PBXGroup;
 			children = (
+				9C70A82F1DDD8F1900CE8403 /* o_sample.png */,
+				9C70A8301DDD8F1900CE8403 /* clock.png */,
 				6003F59C195388D20070C39A /* RTAppDelegate.h */,
 				6003F59D195388D20070C39A /* RTAppDelegate.m */,
 				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
@@ -277,8 +287,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */,
+				9C70A8321DDD8F1900CE8403 /* clock.png in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
+				9C70A8311DDD8F1900CE8403 /* o_sample.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -467,7 +479,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -500,7 +512,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
