@@ -20,8 +20,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import <objc/runtime.h>
-
 #import <ImageIO/ImageIO.h>
 #import <MobileCoreServices/MobileCoreServices.h>
 
@@ -29,7 +27,7 @@
 
 
 
-NSString * const APNGImageErrorDomain = @"APNGImageErrorDomain";
+const NSString *APNGImageErrorDomain = @"APNGImageErrorDomain";
 
 
 __attribute((overloadable)) UIImage * UIAnimatedImageWithAPNGData(NSData *data)
@@ -46,13 +44,13 @@ __attribute((overloadable)) UIImage * UIAnimatedImageWithAPNGData(NSData *data, 
 {
     NSDictionary *userInfo = nil;
     UIImage *resultImage = nil;
-    
+
     do {
         if (!data.length) {
             userInfo = @{NSLocalizedDescriptionKey: @"Data is empty"};
             break;
         }
-        
+
         CGImageSourceRef sourceRef = CGImageSourceCreateWithData((CFDataRef)data, nil);
         CGImageSourceStatus status = CGImageSourceGetStatus(sourceRef);
         if (status != kCGImageStatusComplete && status != kCGImageStatusIncomplete && status != kCGImageStatusReadingHeader) {
@@ -74,8 +72,8 @@ __attribute((overloadable)) UIImage * UIAnimatedImageWithAPNGData(NSData *data, 
             }
             break;
         }
-        
-        
+
+
         size_t frameCount = CGImageSourceGetCount(sourceRef);
         if (frameCount <= 1) {
             resultImage = [[UIImage alloc] initWithData:data];
@@ -83,13 +81,13 @@ __attribute((overloadable)) UIImage * UIAnimatedImageWithAPNGData(NSData *data, 
         else {
             NSTimeInterval imageDuration = 0.f;
             NSMutableArray *frames = [NSMutableArray arrayWithCapacity:frameCount];
-            
+
             for (size_t i = 0; i < frameCount; ++i) {
                 CGImageRef imageRef = CGImageSourceCreateImageAtIndex(sourceRef, i, nil);
                 if (!imageRef) {
                     continue;
                 }
-                
+
                 NSDictionary *frameProperty = (__bridge NSDictionary *)CGImageSourceCopyPropertiesAtIndex(sourceRef, i, nil);
                 NSDictionary *apngProperty = frameProperty[(__bridge NSString *)kCGImagePropertyPNGDictionary];
                 NSNumber *delayTime = apngProperty[(__bridge NSString *)kCGImagePropertyAPNGUnclampedDelayTime];
@@ -106,31 +104,31 @@ __attribute((overloadable)) UIImage * UIAnimatedImageWithAPNGData(NSData *data, 
                                                      scale:scale > 0.f ? scale : [UIScreen mainScreen].scale
                                                orientation:UIImageOrientationUp];
                 [frames addObject:image];
-                
+
                 CFRelease(imageRef);
             }
-            
+
             if (duration > CGFLOAT_MIN) {
                 imageDuration = duration;
             }
             else if (imageDuration < CGFLOAT_MIN) {
                 imageDuration = 0.1 * frameCount;
             }
-            
+
             resultImage = [UIImage animatedImageWithImages:frames.copy
                                                   duration:imageDuration];
         }
-        
+
         CFRelease(sourceRef);
-        
+
         return resultImage;
     } while (0);
-    
-    
+
+
     if (error) {
         *error = [NSError errorWithDomain:APNGImageErrorDomain code:-1 userInfo:userInfo];
     }
-    
+
     return resultImage;
 }
 
@@ -143,18 +141,12 @@ NSData * __nullable UIImageAPNGRepresentation(UIImage * __nonnull image) {
 
 
 
-
 static NSString *APNGImageNameOfScale(NSString *name, CGFloat scale) {
     int ratio = (int)scale;
     if (scale > 1) {
         return [NSString stringWithFormat:@"%@@%dx", name.stringByDeletingPathExtension, ratio];
     }
     return name.stringByDeletingPathExtension;
-}
-
-static BOOL APNGDataIsValid(NSData * data) {
-    
-    return NO;
 }
 
 
@@ -180,20 +172,29 @@ static BOOL APNGDataIsValid(NSData * data) {
     if (images.count) {
         NSMutableData *imageData = [NSMutableData data];
         CGImageDestinationRef targetImage = CGImageDestinationCreateWithData((__bridge CFMutableDataRef)imageData, kUTTypePNG, images.count, NULL);
-        
+
         NSTimeInterval delay = duration / images.count;
         [images enumerateObjectsUsingBlock:^(UIImage * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             CGImageDestinationAddImage(targetImage, obj.CGImage, (__bridge CFDictionaryRef)@{(__bridge NSString *)kCGImagePropertyPNGDictionary: @{(__bridge NSString *)kCGImagePropertyAPNGDelayTime: @(delay)}});
         }];
         CGImageDestinationSetProperties(targetImage, (__bridge CFDictionaryRef)@{(__bridge NSString *)kCGImagePropertyPNGDictionary: @{(__bridge NSString *)kCGImagePropertyAPNGLoopCount: @(repeatCount)}});
-        if (!CGImageDestinationFinalize(targetImage) && error) {
-            *error = [NSError errorWithDomain:APNGImageErrorDomain
-                                         code:-1
-                                     userInfo:@{NSLocalizedDescriptionKey: @"Fail to finalize image!"}];
+        if (!CGImageDestinationFinalize(targetImage)) {
+            imageData = nil;
+
+            if (error) {
+                *error = [NSError errorWithDomain:APNGImageErrorDomain
+                                             code:-1
+                                         userInfo:@{NSLocalizedDescriptionKey: @"Fail to finalize image!"}];
+            }
         }
         CFRelease(targetImage);
-        
+
         return [imageData copy];
+    }
+    else if (error) {
+        *error = [NSError errorWithDomain:APNGImageErrorDomain
+                                     code:-1
+                                 userInfo:@{NSLocalizedDescriptionKey: @"At least 1 image"}];
     }
     return nil;
 }

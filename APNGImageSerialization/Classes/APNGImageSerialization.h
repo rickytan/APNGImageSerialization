@@ -23,8 +23,9 @@
 #import <UIKit/UIKit.h>
 
 
+NS_ASSUME_NONNULL_BEGIN
 
-FOUNDATION_EXTERN NSString *const APNGImageErrorDomain;
+FOUNDATION_EXTERN const NSString * APNGImageErrorDomain;
 
 /**
  *  These functions decode a APNG format data into a @banimated @cUIImage
@@ -33,32 +34,30 @@ FOUNDATION_EXTERN NSString *const APNGImageErrorDomain;
  *
  *  @return A animated UIImage
  */
-UIKIT_EXTERN __attribute((overloadable)) UIImage * UIAnimatedImageWithAPNGData(NSData *data);
+UIKIT_EXTERN __attribute((overloadable)) UIImage * _Nullable UIAnimatedImageWithAPNGData(NSData *data);
 
-UIKIT_EXTERN __attribute((overloadable)) UIImage * UIAnimatedImageWithAPNGData(NSData *data, NSTimeInterval duration);
-UIKIT_EXTERN __attribute((overloadable)) UIImage * UIAnimatedImageWithAPNGData(NSData *data, NSTimeInterval duration, CGFloat scale, NSError * __autoreleasing * error);
+UIKIT_EXTERN __attribute((overloadable)) UIImage * _Nullable UIAnimatedImageWithAPNGData(NSData *data, NSTimeInterval duration);
+UIKIT_EXTERN __attribute((overloadable)) UIImage * _Nullable UIAnimatedImageWithAPNGData(NSData *data, NSTimeInterval duration, CGFloat scale, NSError *  __nullable __autoreleasing * error);
 
 
 
 UIKIT_EXTERN NSData * __nullable UIImageAPNGRepresentation(UIImage * __nonnull image);
 
 
-
 @interface APNGImageSerialization : NSObject
 
-+ (NSData *)dataWithAnimatedImage:(UIImage *)image
-                            error:(NSError * __autoreleasing * )error;
++ (NSData * __nullable)dataWithAnimatedImage:(UIImage *)image
+                                       error:(NSError * __nullable __autoreleasing * )error;
 
-+ (NSData *)dataWithImages:(NSArray <UIImage *> *)images
-                  duration:(NSTimeInterval)duration
-                     error:(NSError *__autoreleasing *)error;
++ (NSData * __nullable)dataWithImages:(NSArray <UIImage *> *)images
+                             duration:(NSTimeInterval)duration
+                                error:(NSError * __nullable __autoreleasing *)error;
 
-+ (NSData *)dataWithImages:(NSArray <UIImage *> *)images
-                  duration:(NSTimeInterval)duration
-               repeatCount:(NSInteger)repeatCount
-                     error:(NSError *__autoreleasing *)error;
++ (NSData * __nullable)dataWithImages:(NSArray <UIImage *> *)images
+                             duration:(NSTimeInterval)duration
+                          repeatCount:(NSInteger)repeatCount
+                                error:(NSError * __nullable __autoreleasing *)error;
 @end
-
 
 @interface UIImage (Animated_PNG)
 
@@ -70,18 +69,20 @@ UIKIT_EXTERN NSData * __nullable UIImageAPNGRepresentation(UIImage * __nonnull i
  *
  *  @return A new animated image
  */
-+ (UIImage *)animatedImageNamed:(NSString *)name;
++ (UIImage * __nullable)animatedImageNamed:(NSString *)name;
 
-+ (UIImage *)apng_animatedImageWithAPNGData:(NSData *)data;
++ (UIImage * __nullable)apng_animatedImageWithAPNGData:(NSData *)data;
 
-+ (UIImage *)apng_animatedImageWithAPNGData:(NSData *)data
++ (UIImage * __nullable)apng_animatedImageWithAPNGData:(NSData *)data
                                    duration:(NSTimeInterval)duration;
 
-+ (UIImage *)apng_animatedImageWithAPNGData:(NSData *)data
++ (UIImage * __nullable)apng_animatedImageWithAPNGData:(NSData *)data
                                       scale:(CGFloat)scale;
 
-+ (UIImage *)apng_animatedImageWithAPNGData:(NSData *)data
++ (UIImage * __nullable)apng_animatedImageWithAPNGData:(NSData *)data
                                    duration:(NSTimeInterval)duration
                                       scale:(CGFloat)scale;
 
 @end
+
+NS_ASSUME_NONNULL_END

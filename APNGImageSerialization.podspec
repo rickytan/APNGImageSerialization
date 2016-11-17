@@ -16,5 +16,5 @@ TODO: Add long description of the pod here.
 
   s.source_files = 'APNGImageSerialization/Classes/**/*'
   s.public_header_files = 'APNGImageSerialization/Classes/**/*.h'
-  s.frameworks = 'UIKit', 'ImageIO'
+  s.frameworks = 'UIKit', 'ImageIO', 'MobileCoreServices'
 end
