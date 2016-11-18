@@ -1,9 +1,9 @@
 Pod::Spec.new do |s|
   s.name             = 'APNGImageSerialization'
   s.version          = '0.1.0'
-  s.summary          = 'A short description of APNGImageSerialization.'
+  s.summary          = 'A wrapper for APNG support'
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+This project provide a simple way to encode and decode APNG file to animate UIImage. requires iOS 8+
                        DESC
 
   s.homepage         = 'https://github.com/rickytan/APNGImageSerialization'

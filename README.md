@@ -1,6 +1,6 @@
 # APNGImageSerialization
 
-[![CI Status](http://img.shields.io/travis/Ricky Tan/APNGImageSerialization.svg?style=flat)](https://travis-ci.org/Ricky Tan/APNGImageSerialization)
+[![CI Status](http://img.shields.io/travis/rickytan/APNGImageSerialization.svg?style=flat)](https://travis-ci.org/rickytan/APNGImageSerialization)
 [![Version](https://img.shields.io/cocoapods/v/APNGImageSerialization.svg?style=flat)](http://cocoapods.org/pods/APNGImageSerialization)
 [![License](https://img.shields.io/cocoapods/l/APNGImageSerialization.svg?style=flat)](http://cocoapods.org/pods/APNGImageSerialization)
 [![Platform](https://img.shields.io/cocoapods/p/APNGImageSerialization.svg?style=flat)](http://cocoapods.org/pods/APNGImageSerialization)
@@ -10,6 +10,24 @@
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
 ## Requirements
+
+* Xcode 7+
+* iOS 8+
+
+## Usage
+
+### Decode
+
+```objective-c
+self.imageView.image = [UIImage animatedImageNamed:@"clock"];
+```
+
+### Encode
+
+```objcective-c
+NSData *data = UIImageAPNGRepresentation(image);
+[data writeToFile:path atomically:YES];
+```
 
 ## Installation
 
