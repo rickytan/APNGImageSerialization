@@ -23,6 +23,7 @@
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		9C70A8311DDD8F1900CE8403 /* o_sample@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C70A82F1DDD8F1900CE8403 /* o_sample@2x.png */; };
 		9C70A8321DDD8F1900CE8403 /* clock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C70A8301DDD8F1900CE8403 /* clock@2x.png */; };
+		9CE352F21DDEBA2700BC87E5 /* Launch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CE352F11DDEBA2700BC87E5 /* Launch.storyboard */; };
 		B5BAF879A4329B216279A398 /* Pods_APNGImageSerialization_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66968B0D4C1FE00C704E3D5B /* Pods_APNGImageSerialization_Example.framework */; };
 /* End PBXBuildFile section */
 
@@ -65,6 +66,7 @@
 		9C70A82F1DDD8F1900CE8403 /* o_sample@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "o_sample@2x.png"; sourceTree = "<group>"; };
 		9C70A8301DDD8F1900CE8403 /* clock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "clock@2x.png"; sourceTree = "<group>"; };
 		9C70A8331DDD997B00CE8403 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		9CE352F11DDEBA2700BC87E5 /* Launch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Launch.storyboard; sourceTree = "<group>"; };
 		C22C472ED21565621DD6097C /* Pods-APNGImageSerialization_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-APNGImageSerialization_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-APNGImageSerialization_Example/Pods-APNGImageSerialization_Example.release.xcconfig"; sourceTree = "<group>"; };
 		C603576B5DC5B58B4FAB4519 /* Pods-APNGImageSerialization_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-APNGImageSerialization_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-APNGImageSerialization_Example/Pods-APNGImageSerialization_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		EF2560236B306EFB607517B5 /* Pods-APNGImageSerialization_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-APNGImageSerialization_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-APNGImageSerialization_Tests/Pods-APNGImageSerialization_Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				9C70A82F1DDD8F1900CE8403 /* o_sample@2x.png */,
 				6003F594195388D20070C39A /* Supporting Files */,
+				9CE352F11DDEBA2700BC87E5 /* Launch.storyboard */,
 			);
 			name = "Example for APNGImageSerialization";
 			path = APNGImageSerialization;
@@ -253,6 +256,9 @@
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "Ricky Tan";
 				TargetAttributes = {
+					6003F589195388D20070C39A = {
+						DevelopmentTeam = JRKXNW9FRX;
+					};
 					6003F5AD195388D20070C39A = {
 						TestTargetID = 6003F589195388D20070C39A;
 					};
@@ -282,6 +288,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9CE352F21DDEBA2700BC87E5 /* Launch.storyboard in Resources */,
 				873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */,
 				9C70A8321DDD8F1900CE8403 /* clock@2x.png in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
@@ -520,13 +527,14 @@
 			baseConfigurationReference = C603576B5DC5B58B4FAB4519 /* Pods-APNGImageSerialization_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				DEVELOPMENT_TEAM = JRKXNW9FRX;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "APNGImageSerialization/APNGImageSerialization-Prefix.pch";
 				INFOPLIST_FILE = "APNGImageSerialization/APNGImageSerialization-Info.plist";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -536,13 +544,14 @@
 			baseConfigurationReference = C22C472ED21565621DD6097C /* Pods-APNGImageSerialization_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				DEVELOPMENT_TEAM = JRKXNW9FRX;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "APNGImageSerialization/APNGImageSerialization-Prefix.pch";
 				INFOPLIST_FILE = "APNGImageSerialization/APNGImageSerialization-Info.plist";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
