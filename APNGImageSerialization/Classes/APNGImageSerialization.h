@@ -28,7 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 FOUNDATION_EXTERN const NSString * APNGImageErrorDomain;
 
 /**
- *  These functions decode a APNG format data into a @banimated @cUIImage
+ *  These functions decode a APNG format data into a @b animated @cUIImage
  *
  *  @param NSData The APNG data
  *
@@ -40,8 +40,19 @@ UIKIT_EXTERN __attribute((overloadable)) UIImage * _Nullable UIAnimatedImageWith
 UIKIT_EXTERN __attribute((overloadable)) UIImage * _Nullable UIAnimatedImageWithAPNGData(NSData *data, NSTimeInterval duration, CGFloat scale, NSError *  __nullable __autoreleasing * error);
 
 
-
-UIKIT_EXTERN NSData * __nullable UIImageAPNGRepresentation(UIImage * __nonnull image);
+/**
+ *  return animated image as APNG format data, if image has only one frame, return as PNG
+ */
+UIKIT_EXTERN __attribute((overloadable)) NSData * __nullable UIImageAPNGRepresentation(UIImage * image);
+/**
+ *
+ *
+ *  @param image The animated image
+ *  @param compressionQuality range form 0.0 ~ 1.0, while 0 mean max compression, it will cost more memory and return less data
+ *
+ *  @return <#return value description#>
+ */
+UIKIT_EXTERN __attribute((overloadable)) NSData * __nullable UIImageAPNGRepresentation(UIImage * image, CGFloat compressionQuality);
 
 
 @interface APNGImageSerialization : NSObject
@@ -56,6 +67,12 @@ UIKIT_EXTERN NSData * __nullable UIImageAPNGRepresentation(UIImage * __nonnull i
 + (NSData * __nullable)dataWithImages:(NSArray <UIImage *> *)images
                              duration:(NSTimeInterval)duration
                           repeatCount:(NSInteger)repeatCount
+                                error:(NSError * __nullable __autoreleasing *)error;
+
++ (NSData * __nullable)dataWithImages:(NSArray <UIImage *> *)images
+                             duration:(NSTimeInterval)duration
+                          repeatCount:(NSInteger)repeatCount
+                              quality:(CGFloat)quality
                                 error:(NSError * __nullable __autoreleasing *)error;
 @end
 

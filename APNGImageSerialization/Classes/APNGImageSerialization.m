@@ -91,6 +91,7 @@ __attribute((overloadable)) UIImage * UIAnimatedImageWithAPNGData(NSData *data, 
                 NSDictionary *frameProperty = (__bridge NSDictionary *)CGImageSourceCopyPropertiesAtIndex(sourceRef, i, nil);
                 NSDictionary *apngProperty = frameProperty[(__bridge NSString *)kCGImagePropertyPNGDictionary];
                 NSNumber *delayTime = apngProperty[(__bridge NSString *)kCGImagePropertyAPNGUnclampedDelayTime];
+                
                 if (delayTime) {
                     imageDuration += [delayTime doubleValue];
                 }
@@ -134,14 +135,21 @@ __attribute((overloadable)) UIImage * UIAnimatedImageWithAPNGData(NSData *data, 
 
 
 
-NSData * __nullable UIImageAPNGRepresentation(UIImage * __nonnull image) {
+__attribute((overloadable)) NSData * __nullable UIImageAPNGRepresentation(UIImage * __nonnull image) {
     return [APNGImageSerialization dataWithAnimatedImage:image
                                                    error:NULL];
 }
 
+__attribute((overloadable)) NSData * __nullable UIImageAPNGRepresentation(UIImage * __nonnull image, CGFloat compressionQuality) {
+    return [APNGImageSerialization dataWithImages:image.images ?: @[image]
+                                         duration:image.duration
+                                      repeatCount:0
+                                          quality:compressionQuality
+                                            error:NULL];
+}
 
 
-static NSString *APNGImageNameOfScale(NSString *name, CGFloat scale) {
+static NSString *APNGImageNameOfScale(NSString *name, CGFloat scale) __attribute__((const)) {
     int ratio = (int)scale;
     if (scale > 1) {
         return [NSString stringWithFormat:@"%@@%dx", name.stringByDeletingPathExtension, ratio];
@@ -152,35 +160,57 @@ static NSString *APNGImageNameOfScale(NSString *name, CGFloat scale) {
 
 @implementation APNGImageSerialization
 
-+ (NSData *)dataWithAnimatedImage:(UIImage *)image error:(NSError *__autoreleasing *)error __attribute__((objc_method_family_new))
++ (NSData *)dataWithAnimatedImage:(UIImage *)image
+                            error:(NSError * __autoreleasing *)error
 {
-    if (image.images.count > 0) {
+    if (image.images.count > 1) {
         return [self dataWithImages:image.images
                            duration:image.duration
                               error:error];
     }
     else {
-        return UIImagePNGRepresentation(image);
+        return UIImagePNGRepresentation(image.images.firstObject ?: image);
     }
 }
 
 + (NSData *)dataWithImages:(NSArray<UIImage *> *)images
                   duration:(NSTimeInterval)duration
                repeatCount:(NSInteger)repeatCount
-                     error:(NSError *__autoreleasing *)error __attribute__((objc_method_family_new))
+                     error:(NSError *__autoreleasing *)error
 {
-    if (images.count) {
+    return [self dataWithImages:images
+                       duration:duration
+                    repeatCount:repeatCount
+                        quality:.8f
+                          error:error];
+}
+
++ (NSData *)dataWithImages:(NSArray<UIImage *> *)images
+                  duration:(NSTimeInterval)duration
+                     error:(NSError *__autoreleasing *)error
+{
+    return [self dataWithImages:images duration:duration repeatCount:0 error:error];
+}
+
++ (NSData *)dataWithImages:(NSArray<UIImage *> *)images
+                  duration:(NSTimeInterval)duration
+               repeatCount:(NSInteger)repeatCount
+                   quality:(CGFloat)quality
+                     error:(NSError *__autoreleasing *)error
+{
+    if (images.count > 1) {
         NSMutableData *imageData = [NSMutableData data];
         CGImageDestinationRef targetImage = CGImageDestinationCreateWithData((__bridge CFMutableDataRef)imageData, kUTTypePNG, images.count, NULL);
-
+        
         NSTimeInterval delay = duration / images.count;
         [images enumerateObjectsUsingBlock:^(UIImage * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             CGImageDestinationAddImage(targetImage, obj.CGImage, (__bridge CFDictionaryRef)@{(__bridge NSString *)kCGImagePropertyPNGDictionary: @{(__bridge NSString *)kCGImagePropertyAPNGDelayTime: @(delay)}});
         }];
-        CGImageDestinationSetProperties(targetImage, (__bridge CFDictionaryRef)@{(__bridge NSString *)kCGImagePropertyPNGDictionary: @{(__bridge NSString *)kCGImagePropertyAPNGLoopCount: @(repeatCount)}});
+        CGImageDestinationSetProperties(targetImage, (__bridge CFDictionaryRef)@{(__bridge NSString *)kCGImagePropertyPNGDictionary: @{(__bridge NSString *)kCGImagePropertyAPNGLoopCount: @(repeatCount)},
+                                                                                 (__bridge NSString *)kCGImageDestinationLossyCompressionQuality: @(quality)});
         if (!CGImageDestinationFinalize(targetImage)) {
             imageData = nil;
-
+            
             if (error) {
                 *error = [NSError errorWithDomain:APNGImageErrorDomain
                                              code:-1
@@ -188,8 +218,11 @@ static NSString *APNGImageNameOfScale(NSString *name, CGFloat scale) {
             }
         }
         CFRelease(targetImage);
-
+        
         return [imageData copy];
+    }
+    else if (images.count == 1) {
+        return UIImagePNGRepresentation(images.firstObject);
     }
     else if (error) {
         *error = [NSError errorWithDomain:APNGImageErrorDomain
@@ -199,17 +232,12 @@ static NSString *APNGImageNameOfScale(NSString *name, CGFloat scale) {
     return nil;
 }
 
-+ (NSData *)dataWithImages:(NSArray<UIImage *> *)images duration:(NSTimeInterval)duration error:(NSError *__autoreleasing *)error __attribute__((objc_method_family_new))
-{
-    return [self dataWithImages:images duration:duration repeatCount:0 error:error];
-}
-
 @end
 
 
 @implementation UIImage (Animated_PNG)
 
-+ (UIImage *)animatedImageNamed:(NSString *)name __attribute__((objc_method_family_new))
++ (UIImage *)animatedImageNamed:(NSString *)name
 {
     CGFloat scale = [UIScreen mainScreen].scale;
     NSString *extension = name.pathExtension;
@@ -230,25 +258,25 @@ static NSString *APNGImageNameOfScale(NSString *name, CGFloat scale) {
     return nil;
 }
 
-+ (UIImage *)apng_animatedImageWithAPNGData:(NSData *)data __attribute__((objc_method_family_new))
++ (UIImage *)apng_animatedImageWithAPNGData:(NSData *)data
 {
     return UIAnimatedImageWithAPNGData(data);
 }
 
-+ (UIImage *)apng_animatedImageWithAPNGData:(NSData *)data scale:(CGFloat)scale __attribute__((objc_method_family_new))
++ (UIImage *)apng_animatedImageWithAPNGData:(NSData *)data scale:(CGFloat)scale
 {
     return UIAnimatedImageWithAPNGData(data, 0.f, scale, NULL);
 }
 
 
-+ (UIImage *)apng_animatedImageWithAPNGData:(NSData *)data duration:(NSTimeInterval)duration __attribute__((objc_method_family_new))
++ (UIImage *)apng_animatedImageWithAPNGData:(NSData *)data duration:(NSTimeInterval)duration
 {
     return UIAnimatedImageWithAPNGData(data, duration);
 }
 
 + (UIImage *)apng_animatedImageWithAPNGData:(NSData *)data
                                    duration:(NSTimeInterval)duration
-                                      scale:(CGFloat)scale __attribute__((objc_method_family_new))
+                                      scale:(CGFloat)scale
 {
     return UIAnimatedImageWithAPNGData(data, duration, scale, NULL);
 }
