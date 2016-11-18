@@ -25,7 +25,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-FOUNDATION_EXTERN const NSString * APNGImageErrorDomain;
+FOUNDATION_EXTERN NSString * const APNGImageErrorDomain;
 
 /**
  *  These functions decode a APNG format data into a @b animated @cUIImage

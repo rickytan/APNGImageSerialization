@@ -27,7 +27,7 @@
 
 
 
-const NSString *APNGImageErrorDomain = @"APNGImageErrorDomain";
+NSString * const APNGImageErrorDomain = @"APNGImageErrorDomain";
 
 
 __attribute((overloadable)) UIImage * UIAnimatedImageWithAPNGData(NSData *data)
