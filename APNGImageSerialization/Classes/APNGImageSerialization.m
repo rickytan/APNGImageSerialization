@@ -149,7 +149,7 @@ __attribute((overloadable)) NSData * __nullable UIImageAPNGRepresentation(UIImag
 }
 
 
-static NSString *APNGImageNameOfScale(NSString *name, CGFloat scale) __attribute__((const)) {
+static NSString *APNGImageNameOfScale(NSString *name, CGFloat scale) {
     int ratio = (int)scale;
     if (scale > 1) {
         return [NSString stringWithFormat:@"%@@%dx", name.stringByDeletingPathExtension, ratio];
