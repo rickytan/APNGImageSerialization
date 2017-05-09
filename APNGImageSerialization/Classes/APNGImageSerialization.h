@@ -27,6 +27,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 FOUNDATION_EXTERN NSString * const APNGImageErrorDomain;
 
+typedef NS_ENUM(NSInteger, APNGErrorCode) {
+    APNGErrorCodeFailToCreate       = -1,
+    APNGErrorCodeFailToFinalize     = -2,
+    APNGErrorCodeNoEnoughData       = -3,
+};
+
 /**
  *  These functions decode a APNG format data into a @b animated @cUIImage
  *
