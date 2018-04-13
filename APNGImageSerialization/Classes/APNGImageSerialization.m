@@ -252,6 +252,33 @@ static NSString *APNGImageNameOfScale(NSString *name, CGFloat scale) {
 
 @end
 
+@implementation UIImage (NamedAnimatedPNG)
+
++ (UIImage *)animatedImageNamed:(NSString *)name __attribute__((objc_method_family(new)))
+{
+    CGFloat scale = [UIScreen mainScreen].scale;
+    NSString *extension = name.pathExtension;
+    if (!extension.length) {
+        extension = @"png";
+    }
+    NSString *path = [[NSBundle mainBundle] pathForResource:APNGImageNameOfScale(name, scale)
+                                                     ofType:extension];
+    while (!path && scale > 0.f) {
+        scale -= 1.f;
+        path = [[NSBundle mainBundle] pathForResource:APNGImageNameOfScale(name, scale)
+                                               ofType:extension];
+    }
+    if (path) {
+        NSData *data = [NSData dataWithContentsOfFile:path];
+        if (AnimatedPngDataIsValid(data)) {
+            return UIAnimatedImageWithAPNGData(data, scale, 0.f, nil);
+        }
+    }
+    return nil;
+}
+
+@end
+
 #pragma mark -
 
 #ifndef ANIMATED_PNG_NO_UIIMAGE_INITIALIZER_SWIZZLING
@@ -276,7 +303,6 @@ static inline void apng_swizzleSelector(Class class, SEL originalSelector, SEL s
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         @autoreleasepool {
-            apng_swizzleSelector(object_getClass((id)self), @selector(imageNamed:), @selector(apng_animatedImageNamed:));
             apng_swizzleSelector(object_getClass((id)self), @selector(imageWithData:), @selector(apng_animatedImageWithAPNGData:));
             apng_swizzleSelector(object_getClass((id)self), @selector(imageWithData:scale:), @selector(apng_animatedImageWithAPNGData:scale:));
             apng_swizzleSelector(object_getClass((id)self), @selector(imageWithContentsOfFile:), @selector(apng_imageWithContentsOfFile:));
@@ -288,30 +314,6 @@ static inline void apng_swizzleSelector(Class class, SEL originalSelector, SEL s
 }
 
 #pragma mark -
-
-+ (UIImage *)apng_animatedImageNamed:(NSString *)name __attribute__((objc_method_family(new)))
-{
-    CGFloat scale = [UIScreen mainScreen].scale;
-    NSString *extension = name.pathExtension;
-    if (!extension.length) {
-        extension = @"png";
-    }
-    NSString *path = [[NSBundle mainBundle] pathForResource:APNGImageNameOfScale(name, scale)
-                                                     ofType:extension];
-    while (!path && scale > 0.f) {
-        scale -= 1.f;
-        path = [[NSBundle mainBundle] pathForResource:APNGImageNameOfScale(name, scale)
-                                               ofType:extension];
-    }
-    if (path) {
-        NSData *data = [NSData dataWithContentsOfFile:path];
-        if (AnimatedPngDataIsValid(data)) {
-            return UIAnimatedImageWithAPNGData(data, scale, 0.f, nil);
-        }
-    }
-    return [self apng_animatedImageNamed:name];
-}
-
 
 + (UIImage *)apng_imageWithContentsOfFile:(NSString *)path __attribute__((objc_method_family(new)))
 {

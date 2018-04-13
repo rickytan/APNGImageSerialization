@@ -70,7 +70,7 @@
 		C22C472ED21565621DD6097C /* Pods-APNGImageSerialization_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-APNGImageSerialization_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-APNGImageSerialization_Example/Pods-APNGImageSerialization_Example.release.xcconfig"; sourceTree = "<group>"; };
 		C603576B5DC5B58B4FAB4519 /* Pods-APNGImageSerialization_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-APNGImageSerialization_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-APNGImageSerialization_Example/Pods-APNGImageSerialization_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		EF2560236B306EFB607517B5 /* Pods-APNGImageSerialization_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-APNGImageSerialization_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-APNGImageSerialization_Tests/Pods-APNGImageSerialization_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		F790E77FE4BEC41103296F75 /* APNGImageSerialization.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = APNGImageSerialization.podspec; path = ../APNGImageSerialization.podspec; sourceTree = "<group>"; };
+		F790E77FE4BEC41103296F75 /* APNGImageSerialization.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = APNGImageSerialization.podspec; path = ../APNGImageSerialization.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */

@@ -55,7 +55,7 @@ UIKIT_EXTERN __attribute((overloadable)) NSData * __nullable UIImageAPNGRepresen
  *  @param image The animated image
  *  @param compressionQuality range form 0.0 ~ 1.0, while 0 mean max compression, it will cost more memory and return less data
  *
- *  @return <#return value description#>
+ *  @return the raw data representation this image
  */
 UIKIT_EXTERN __attribute((overloadable)) NSData * __nullable UIImageAPNGRepresentation(UIImage * image, CGFloat compressionQuality);
 
@@ -79,6 +79,20 @@ UIKIT_EXTERN __attribute((overloadable)) NSData * __nullable UIImageAPNGRepresen
                           repeatCount:(NSInteger)repeatCount
                               quality:(CGFloat)quality
                                 error:(NSError * __nullable __autoreleasing *)error;
+@end
+
+@interface UIImage (NamedAnimatedPNG)
+
+/**
+ *  Load and return a animated @c UIImage from main bundle, **DO NOT** put your apng file into Image Assets Catalog,
+ *  it is @b NOT supported !
+ *
+ *  @param name image name with out @b @2x @b @3x subfix
+ *
+ *  @return A new animated image
+ */
++ (UIImage *)animatedImageNamed:(NSString *)name __attribute__((objc_method_family(new)));
+
 @end
 
 NS_ASSUME_NONNULL_END

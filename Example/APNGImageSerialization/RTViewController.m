@@ -23,8 +23,8 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    self.imageView.image = [UIImage imageNamed:@"clock"];
-    self.sampleImage.image = [UIImage imageNamed:@"o_sample"];
+    self.imageView.image = [UIImage animatedImageNamed:@"clock"];
+    self.sampleImage.image = [UIImage animatedImageNamed:@"o_sample"];
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{        
         NSData *data = [APNGImageSerialization dataWithImages:self.imageView.image.images
@@ -34,7 +34,7 @@
         self.imageView.image = image;
         
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            NSData *data = UIImageAPNGRepresentation([UIImage imageNamed:@"clock"], 0.);
+            NSData *data = UIImageAPNGRepresentation([UIImage animatedImageNamed:@"clock"], 0.);
             UIImage *image = UIAnimatedImageWithAPNGData(data);
             self.imageView.image = image;
         });
