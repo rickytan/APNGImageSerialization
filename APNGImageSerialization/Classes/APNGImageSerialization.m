@@ -74,58 +74,56 @@ __attribute((overloadable)) UIImage * UIAnimatedImageWithAPNGData(NSData *data, 
 
 
         size_t frameCount = CGImageSourceGetCount(sourceRef);
-        if (frameCount <= 1) {
-            resultImage = [[UIImage alloc] initWithData:data];
-        }
-        else {
-            NSTimeInterval imageDuration = 0.f;
-            NSMutableArray *frames = [NSMutableArray arrayWithCapacity:frameCount];
 
-            for (size_t i = 0; i < frameCount; ++i) {
-                CGImageRef imageRef = CGImageSourceCreateImageAtIndex(sourceRef, i, nil);
-                if (!imageRef) {
-                    continue;
-                }
+        NSTimeInterval imageDuration = 0.f;
+        NSMutableArray *frames = [NSMutableArray arrayWithCapacity:frameCount];
 
-                NSDictionary *frameProperty = (__bridge NSDictionary *)CGImageSourceCopyPropertiesAtIndex(sourceRef, i, nil);
-                NSDictionary *apngProperty = frameProperty[(__bridge NSString *)kCGImagePropertyPNGDictionary];
-                NSNumber *delayTime = apngProperty[(__bridge NSString *)kCGImagePropertyAPNGUnclampedDelayTime];
+        for (size_t i = 0; i < frameCount; ++i) {
+            CGImageRef imageRef = CGImageSourceCreateImageAtIndex(sourceRef, i, nil);
+            if (!imageRef) {
+                continue;
+            }
 
+            NSDictionary *frameProperty = (__bridge NSDictionary *)CGImageSourceCopyPropertiesAtIndex(sourceRef, i, nil);
+            NSDictionary *apngProperty = frameProperty[(__bridge NSString *)kCGImagePropertyPNGDictionary];
+            NSNumber *delayTime = apngProperty[(__bridge NSString *)kCGImagePropertyAPNGUnclampedDelayTime];
+
+            if (delayTime) {
+                imageDuration += [delayTime doubleValue];
+            }
+            else {
+                delayTime = apngProperty[(__bridge NSString *)kCGImagePropertyAPNGDelayTime];
                 if (delayTime) {
                     imageDuration += [delayTime doubleValue];
                 }
-                else {
-                    delayTime = apngProperty[(__bridge NSString *)kCGImagePropertyAPNGDelayTime];
-                    if (delayTime) {
-                        imageDuration += [delayTime doubleValue];
-                    }
-                }
-                UIImage *image = [UIImage imageWithCGImage:imageRef
-                                                     scale:scale > 0.f ? scale : [UIScreen mainScreen].scale
-                                               orientation:UIImageOrientationUp];
-                [frames addObject:image];
-
-                CFRelease(imageRef);
             }
+            UIImage *image = [UIImage imageWithCGImage:imageRef
+                                                 scale:scale > 0.f ? scale : [UIScreen mainScreen].scale
+                                           orientation:UIImageOrientationUp];
+            [frames addObject:image];
 
-            if (duration > CGFLOAT_MIN) {
-                imageDuration = duration;
-            }
-            else if (imageDuration < CGFLOAT_MIN) {
-                imageDuration = 0.1 * frameCount;
-            }
-
-            resultImage = [UIImage animatedImageWithImages:frames.copy
-                                                  duration:imageDuration];
+            CFRelease(imageRef);
         }
 
         CFRelease(sourceRef);
 
-        return resultImage;
+        if (duration > CGFLOAT_MIN) {
+            imageDuration = duration;
+        }
+        else if (imageDuration < CGFLOAT_MIN) {
+            imageDuration = 0.1 * frameCount;
+        }
+
+        if (frames.count <= 1) {
+            resultImage = frames.firstObject;
+        }
+        else {
+            resultImage = [UIImage animatedImageWithImages:frames.copy
+                                                  duration:imageDuration];
+        }
     } while (0);
 
-
-    if (error) {
+    if (resultImage == nil && error != nil) {
         *error = [NSError errorWithDomain:APNGImageErrorDomain
                                      code:APNGErrorCodeNoEnoughData
                                  userInfo:userInfo];
