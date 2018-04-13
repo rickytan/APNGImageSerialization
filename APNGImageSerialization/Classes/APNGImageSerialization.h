@@ -36,14 +36,13 @@ typedef NS_ENUM(NSInteger, APNGErrorCode) {
 /**
  *  These functions decode a APNG format data into a @b animated @cUIImage
  *
- *  @param NSData The APNG data
+ *  @param data The APNG data
  *
  *  @return A animated UIImage
  */
 UIKIT_EXTERN __attribute((overloadable)) UIImage * _Nullable UIAnimatedImageWithAPNGData(NSData *data);
 
-UIKIT_EXTERN __attribute((overloadable)) UIImage * _Nullable UIAnimatedImageWithAPNGData(NSData *data, NSTimeInterval duration);
-UIKIT_EXTERN __attribute((overloadable)) UIImage * _Nullable UIAnimatedImageWithAPNGData(NSData *data, NSTimeInterval duration, CGFloat scale, NSError *  __nullable __autoreleasing * error);
+UIKIT_EXTERN __attribute((overloadable)) UIImage * _Nullable UIAnimatedImageWithAPNGData(NSData *data, CGFloat scale, NSTimeInterval duration, NSError *  __nullable __autoreleasing * error);
 
 
 /**
@@ -80,32 +79,6 @@ UIKIT_EXTERN __attribute((overloadable)) NSData * __nullable UIImageAPNGRepresen
                           repeatCount:(NSInteger)repeatCount
                               quality:(CGFloat)quality
                                 error:(NSError * __nullable __autoreleasing *)error;
-@end
-
-@interface UIImage (Animated_PNG)
-
-/**
- *  Load and return a animated @c UIImage from main bundle, **DO NOT** put your apng file into Image Assets Catalog,
- *  it is @b NOT supported !
- *
- *  @param name image name with out @b @2x @b @3x subfix
- *
- *  @return A new animated image
- */
-+ (UIImage * __nullable)animatedImageNamed:(NSString *)name;
-
-+ (UIImage * __nullable)apng_animatedImageWithAPNGData:(NSData *)data;
-
-+ (UIImage * __nullable)apng_animatedImageWithAPNGData:(NSData *)data
-                                   duration:(NSTimeInterval)duration;
-
-+ (UIImage * __nullable)apng_animatedImageWithAPNGData:(NSData *)data
-                                      scale:(CGFloat)scale;
-
-+ (UIImage * __nullable)apng_animatedImageWithAPNGData:(NSData *)data
-                                   duration:(NSTimeInterval)duration
-                                      scale:(CGFloat)scale;
-
 @end
 
 NS_ASSUME_NONNULL_END

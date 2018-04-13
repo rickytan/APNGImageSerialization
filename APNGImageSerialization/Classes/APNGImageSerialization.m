@@ -36,25 +36,20 @@ NSString * const APNGImageErrorDomain = @"APNGImageErrorDomain";
 
 __attribute((overloadable)) UIImage * UIAnimatedImageWithAPNGData(NSData *data)
 {
-    return UIAnimatedImageWithAPNGData(data, 0.f);
+    return UIAnimatedImageWithAPNGData(data, UIScreen.mainScreen.scale, 0.f, nil);
 }
 
-__attribute((overloadable)) UIImage * UIAnimatedImageWithAPNGData(NSData *data, NSTimeInterval duration)
-{
-    return UIAnimatedImageWithAPNGData(data, duration, 0.f, NULL);
-}
-
-__attribute((overloadable)) UIImage * UIAnimatedImageWithAPNGData(NSData *data, NSTimeInterval duration, CGFloat scale, NSError * __autoreleasing * error)
+__attribute((overloadable)) UIImage * UIAnimatedImageWithAPNGData(NSData *data, CGFloat scale, NSTimeInterval duration, NSError * __autoreleasing * error)
 {
     NSDictionary *userInfo = nil;
     UIImage *resultImage = nil;
-    
+
     do {
         if (!data.length) {
             userInfo = @{NSLocalizedDescriptionKey: @"Data is empty"};
             break;
         }
-        
+
         CGImageSourceRef sourceRef = CGImageSourceCreateWithData((CFDataRef)data, nil);
         CGImageSourceStatus status = CGImageSourceGetStatus(sourceRef);
         if (status != kCGImageStatusComplete && status != kCGImageStatusIncomplete && status != kCGImageStatusReadingHeader) {
@@ -76,8 +71,8 @@ __attribute((overloadable)) UIImage * UIAnimatedImageWithAPNGData(NSData *data, 
             }
             break;
         }
-        
-        
+
+
         size_t frameCount = CGImageSourceGetCount(sourceRef);
         if (frameCount <= 1) {
             resultImage = [[UIImage alloc] initWithData:data];
@@ -85,17 +80,17 @@ __attribute((overloadable)) UIImage * UIAnimatedImageWithAPNGData(NSData *data, 
         else {
             NSTimeInterval imageDuration = 0.f;
             NSMutableArray *frames = [NSMutableArray arrayWithCapacity:frameCount];
-            
+
             for (size_t i = 0; i < frameCount; ++i) {
                 CGImageRef imageRef = CGImageSourceCreateImageAtIndex(sourceRef, i, nil);
                 if (!imageRef) {
                     continue;
                 }
-                
+
                 NSDictionary *frameProperty = (__bridge NSDictionary *)CGImageSourceCopyPropertiesAtIndex(sourceRef, i, nil);
                 NSDictionary *apngProperty = frameProperty[(__bridge NSString *)kCGImagePropertyPNGDictionary];
                 NSNumber *delayTime = apngProperty[(__bridge NSString *)kCGImagePropertyAPNGUnclampedDelayTime];
-                
+
                 if (delayTime) {
                     imageDuration += [delayTime doubleValue];
                 }
@@ -109,37 +104,47 @@ __attribute((overloadable)) UIImage * UIAnimatedImageWithAPNGData(NSData *data, 
                                                      scale:scale > 0.f ? scale : [UIScreen mainScreen].scale
                                                orientation:UIImageOrientationUp];
                 [frames addObject:image];
-                
+
                 CFRelease(imageRef);
             }
-            
+
             if (duration > CGFLOAT_MIN) {
                 imageDuration = duration;
             }
             else if (imageDuration < CGFLOAT_MIN) {
                 imageDuration = 0.1 * frameCount;
             }
-            
+
             resultImage = [UIImage animatedImageWithImages:frames.copy
                                                   duration:imageDuration];
         }
-        
+
         CFRelease(sourceRef);
-        
+
         return resultImage;
     } while (0);
-    
-    
+
+
     if (error) {
         *error = [NSError errorWithDomain:APNGImageErrorDomain
                                      code:APNGErrorCodeNoEnoughData
                                  userInfo:userInfo];
     }
-    
+
     return resultImage;
 }
 
+static BOOL AnimatedPngDataIsValid(NSData *data) {
+    if (data.length > 8) {
+        const unsigned char * bytes = [data bytes];
 
+        return
+            bytes[0] == 0x89 && bytes[1] == 0x50 && bytes[2] == 0x4E && bytes[3] == 0x47 &&
+            bytes[4] == 0x0D && bytes[5] == 0x0A && bytes[6] == 0x1A && bytes[7] == 0x0A;
+    }
+
+    return NO;
+}
 
 __attribute((overloadable)) NSData * __nullable UIImageAPNGRepresentation(UIImage * __nonnull image) {
     return [APNGImageSerialization dataWithAnimatedImage:image
@@ -223,7 +228,7 @@ static NSString *APNGImageNameOfScale(NSString *name, CGFloat scale) {
                                                                                  (__bridge NSString *)kCGImageDestinationLossyCompressionQuality: @(quality)});
         if (!CGImageDestinationFinalize(targetImage)) {
             imageData = nil;
-            
+
             if (error) {
                 *error = [NSError errorWithDomain:APNGImageErrorDomain
                                              code:APNGErrorCodeFailToFinalize
@@ -231,7 +236,7 @@ static NSString *APNGImageNameOfScale(NSString *name, CGFloat scale) {
             }
         }
         CFRelease(targetImage);
-        
+
         return [imageData copy];
     }
     else if (images.count == 1) {
@@ -247,10 +252,44 @@ static NSString *APNGImageNameOfScale(NSString *name, CGFloat scale) {
 
 @end
 
+#pragma mark -
+
+#ifndef ANIMATED_PNG_NO_UIIMAGE_INITIALIZER_SWIZZLING
+#import <objc/runtime.h>
+
+static inline void apng_swizzleSelector(Class class, SEL originalSelector, SEL swizzledSelector) {
+    Method originalMethod = class_getInstanceMethod(class, originalSelector);
+    Method swizzledMethod = class_getInstanceMethod(class, swizzledSelector);
+    if (class_addMethod(class, originalSelector, method_getImplementation(swizzledMethod), method_getTypeEncoding(swizzledMethod))) {
+        class_replaceMethod(class, swizzledSelector, method_getImplementation(originalMethod), method_getTypeEncoding(originalMethod));
+    } else {
+        method_exchangeImplementations(originalMethod, swizzledMethod);
+    }
+}
+
+@interface UIImage (Animated_PNG)
+@end
 
 @implementation UIImage (Animated_PNG)
 
-+ (UIImage *)animatedImageNamed:(NSString *)name
++ (void)load {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        @autoreleasepool {
+            apng_swizzleSelector(object_getClass((id)self), @selector(imageNamed:), @selector(apng_animatedImageNamed:));
+            apng_swizzleSelector(object_getClass((id)self), @selector(imageWithData:), @selector(apng_animatedImageWithAPNGData:));
+            apng_swizzleSelector(object_getClass((id)self), @selector(imageWithData:scale:), @selector(apng_animatedImageWithAPNGData:scale:));
+            apng_swizzleSelector(object_getClass((id)self), @selector(imageWithContentsOfFile:), @selector(apng_imageWithContentsOfFile:));
+            apng_swizzleSelector(self, @selector(initWithContentsOfFile:), @selector(apng_initWithContentsOfFile:));
+            apng_swizzleSelector(self, @selector(initWithData:), @selector(apng_initWithData:));
+            apng_swizzleSelector(self, @selector(initWithData:scale:), @selector(apng_initWithData:scale:));
+        }
+    });
+}
+
+#pragma mark -
+
++ (UIImage *)apng_animatedImageNamed:(NSString *)name __attribute__((objc_method_family(new)))
 {
     CGFloat scale = [UIScreen mainScreen].scale;
     NSString *extension = name.pathExtension;
@@ -266,35 +305,88 @@ static NSString *APNGImageNameOfScale(NSString *name, CGFloat scale) {
     }
     if (path) {
         NSData *data = [NSData dataWithContentsOfFile:path];
-        return UIAnimatedImageWithAPNGData(data, 0.f, scale, NULL);
+        if (AnimatedPngDataIsValid(data)) {
+            return UIAnimatedImageWithAPNGData(data, scale, 0.f, nil);
+        }
     }
-    return nil;
-}
-
-+ (UIImage *)apng_animatedImageWithAPNGData:(NSData *)data
-{
-    return UIAnimatedImageWithAPNGData(data);
-}
-
-+ (UIImage *)apng_animatedImageWithAPNGData:(NSData *)data scale:(CGFloat)scale
-{
-    return UIAnimatedImageWithAPNGData(data, 0.f, scale, NULL);
+    return [self apng_animatedImageNamed:name];
 }
 
 
-+ (UIImage *)apng_animatedImageWithAPNGData:(NSData *)data duration:(NSTimeInterval)duration
++ (UIImage *)apng_imageWithContentsOfFile:(NSString *)path __attribute__((objc_method_family(new)))
 {
-    return UIAnimatedImageWithAPNGData(data, duration);
+    if (path) {
+        NSData *data = [NSData dataWithContentsOfFile:path];
+        if (AnimatedPngDataIsValid(data)) {
+            if ([[path stringByDeletingPathExtension] hasSuffix:@"@2x"]) {
+                return UIAnimatedImageWithAPNGData(data, 3.0f, 0.0f, nil);
+            } else if ([[path stringByDeletingPathExtension] hasSuffix:@"@2x"]) {
+                return UIAnimatedImageWithAPNGData(data, 2.0f, 0.0f, nil);
+            } else {
+                return UIAnimatedImageWithAPNGData(data);
+            }
+        }
+    }
+
+    return [self apng_imageWithContentsOfFile:path];
 }
 
-+ (UIImage *)apng_animatedImageWithAPNGData:(NSData *)data
-                                   duration:(NSTimeInterval)duration
-                                      scale:(CGFloat)scale
++ (UIImage *)apng_animatedImageWithAPNGData:(NSData *)data __attribute__((objc_method_family(init)))
 {
-    return UIAnimatedImageWithAPNGData(data, duration, scale, NULL);
+    if (AnimatedPngDataIsValid(data)) {
+        return UIAnimatedImageWithAPNGData(data);
+    }
+
+    return [self apng_animatedImageWithAPNGData:data];
+
+}
+
++ (UIImage *)apng_animatedImageWithAPNGData:(NSData *)data scale:(CGFloat)scale __attribute__((objc_method_family(init)))
+{
+    if (AnimatedPngDataIsValid(data)) {
+        return UIAnimatedImageWithAPNGData(data, scale, 0.0f, nil);
+    }
+
+    return [self apng_animatedImageWithAPNGData:data scale:scale];
+}
+
+#pragma mark -
+
+- (id)apng_initWithContentsOfFile:(NSString *)path __attribute__((objc_method_family(init))) {
+    NSData *data = [NSData dataWithContentsOfFile:path];
+    if (AnimatedPngDataIsValid(data)) {
+        if ([[path stringByDeletingPathExtension] hasSuffix:@"@3x"]) {
+            return UIAnimatedImageWithAPNGData(data, 3.0, 0.0f, nil);
+        } else if ([[path stringByDeletingPathExtension] hasSuffix:@"@2x"]) {
+            return UIAnimatedImageWithAPNGData(data, 2.0, 0.0f, nil);
+        } else {
+            return UIAnimatedImageWithAPNGData(data);
+        }
+    }
+
+    return [self apng_initWithContentsOfFile:path];
+}
+
+- (id)apng_initWithData:(NSData *)data __attribute__((objc_method_family(init))) {
+    if (AnimatedPngDataIsValid(data)) {
+        return UIAnimatedImageWithAPNGData(data);
+    }
+
+    return [self apng_initWithData:data];
+}
+
+- (id)apng_initWithData:(NSData *)data
+                          scale:(CGFloat)scale __attribute__((objc_method_family(init)))
+{
+    if (AnimatedPngDataIsValid(data)) {
+        return UIAnimatedImageWithAPNGData(data, scale, 0.0f, nil);
+    }
+
+    return [self apng_initWithData:data scale:scale];
 }
 
 @end
+#endif
 
 #if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_9_0
 #undef kCGImagePropertyAPNGDelayTime
