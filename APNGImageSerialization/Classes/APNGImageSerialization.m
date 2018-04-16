@@ -318,7 +318,7 @@ static inline void apng_swizzleSelector(Class class, SEL originalSelector, SEL s
     if (path) {
         NSData *data = [NSData dataWithContentsOfFile:path];
         if (AnimatedPngDataIsValid(data)) {
-            if ([[path stringByDeletingPathExtension] hasSuffix:@"@2x"]) {
+            if ([[path stringByDeletingPathExtension] hasSuffix:@"@3x"]) {
                 return UIAnimatedImageWithAPNGData(data, 3.0f, 0.0f, nil);
             } else if ([[path stringByDeletingPathExtension] hasSuffix:@"@2x"]) {
                 return UIAnimatedImageWithAPNGData(data, 2.0f, 0.0f, nil);
