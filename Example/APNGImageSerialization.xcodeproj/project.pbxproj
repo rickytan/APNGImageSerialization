@@ -214,6 +214,7 @@
 				6003F587195388D20070C39A /* Frameworks */,
 				6003F588195388D20070C39A /* Resources */,
 				113F192EFBD019B1B969346D /* [CP] Embed Pods Frameworks */,
+				595AE428D4302CB8BC546D28 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -232,6 +233,8 @@
 				6003F5AA195388D20070C39A /* Sources */,
 				6003F5AB195388D20070C39A /* Frameworks */,
 				6003F5AC195388D20070C39A /* Resources */,
+				66C214446ED6C9DED3CD5042 /* [CP] Embed Pods Frameworks */,
+				5D361B88D8CAC11DAED24C72 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -321,6 +324,51 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-APNGImageSerialization_Example/Pods-APNGImageSerialization_Example-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		595AE428D4302CB8BC546D28 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-APNGImageSerialization_Example/Pods-APNGImageSerialization_Example-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5D361B88D8CAC11DAED24C72 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-APNGImageSerialization_Tests/Pods-APNGImageSerialization_Tests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		66C214446ED6C9DED3CD5042 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-APNGImageSerialization_Tests/Pods-APNGImageSerialization_Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B16C72D722E1F33489779DD3 /* [CP] Check Pods Manifest.lock */ = {
