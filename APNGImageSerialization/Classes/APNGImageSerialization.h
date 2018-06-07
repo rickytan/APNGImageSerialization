@@ -91,7 +91,7 @@ UIKIT_EXTERN __attribute((overloadable)) NSData * __nullable UIImageAPNGRepresen
  *
  *  @return A new animated image
  */
-+ (UIImage *)animatedImageNamed:(NSString *)name __attribute__((objc_method_family(new)));
++ (UIImage * __nullable)animatedImageNamed:(NSString *)name __attribute__((objc_method_family(new)));
 
 @end
 
