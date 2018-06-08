@@ -84,16 +84,16 @@ __attribute((overloadable)) UIImage * UIAnimatedImageWithAPNGData(NSData *data, 
                 continue;
             }
 
-            NSDictionary *frameProperty = (__bridge NSDictionary *)CGImageSourceCopyPropertiesAtIndex(sourceRef, i, nil);
+            NSDictionary *frameProperty = CFBridgingRelease(CGImageSourceCopyPropertiesAtIndex(sourceRef, i, nil));
             NSDictionary *apngProperty = frameProperty[(__bridge NSString *)kCGImagePropertyPNGDictionary];
             NSNumber *delayTime = apngProperty[(__bridge NSString *)kCGImagePropertyAPNGUnclampedDelayTime];
 
-            if (delayTime) {
+            if (delayTime != nil) {
                 imageDuration += [delayTime doubleValue];
             }
             else {
                 delayTime = apngProperty[(__bridge NSString *)kCGImagePropertyAPNGDelayTime];
-                if (delayTime) {
+                if (delayTime != nil) {
                     imageDuration += [delayTime doubleValue];
                 }
             }
