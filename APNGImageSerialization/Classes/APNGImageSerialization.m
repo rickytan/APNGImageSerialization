@@ -69,6 +69,7 @@ __attribute((overloadable)) UIImage * UIAnimatedImageWithAPNGData(NSData *data, 
                 default:
                     break;
             }
+            CFRelease(sourceRef);
             break;
         }
 
