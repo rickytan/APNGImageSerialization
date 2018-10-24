@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2CD9AA710E40188BAED2D7DA /* Pods_APNGwatchOSDemo_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2822C4884BCDDF00ABAC6537 /* Pods_APNGwatchOSDemo_Extension.framework */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F598195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F596195388D20070C39A /* InfoPlist.strings */; };
@@ -21,6 +22,14 @@
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		862263D75DFE836FCFF6CAE0 /* Pods_APNGImageSerialization_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50EB55EE6378F1F76A09DE02 /* Pods_APNGImageSerialization_Tests.framework */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
+		9C39D41B2180768A00593378 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C39D4192180768A00593378 /* Interface.storyboard */; };
+		9C39D41D2180768D00593378 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C39D41C2180768D00593378 /* Assets.xcassets */; };
+		9C39D4242180768D00593378 /* APNGwatchOSDemo Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9C39D4232180768D00593378 /* APNGwatchOSDemo Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		9C39D42A2180768D00593378 /* InterfaceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C39D4292180768D00593378 /* InterfaceController.m */; };
+		9C39D42D2180768D00593378 /* ExtensionDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C39D42C2180768D00593378 /* ExtensionDelegate.m */; };
+		9C39D42F2180768E00593378 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C39D42E2180768E00593378 /* Assets.xcassets */; };
+		9C39D4332180768E00593378 /* APNGwatchOSDemo.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 9C39D4172180768A00593378 /* APNGwatchOSDemo.app */; };
+		9C39D440218087A300593378 /* progress@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C39D43F218087A300593378 /* progress@2x.png */; };
 		9C70A8311DDD8F1900CE8403 /* o_sample@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C70A82F1DDD8F1900CE8403 /* o_sample@2x.png */; };
 		9C70A8321DDD8F1900CE8403 /* clock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C70A8301DDD8F1900CE8403 /* clock@2x.png */; };
 		9CE352F21DDEBA2700BC87E5 /* Launch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CE352F11DDEBA2700BC87E5 /* Launch.storyboard */; };
@@ -35,11 +44,53 @@
 			remoteGlobalIDString = 6003F589195388D20070C39A;
 			remoteInfo = APNGImageSerialization;
 		};
+		9C39D4252180768D00593378 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6003F582195388D10070C39A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9C39D4222180768D00593378;
+			remoteInfo = "APNGwatchOSDemo Extension";
+		};
+		9C39D4312180768E00593378 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6003F582195388D10070C39A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9C39D4162180768A00593378;
+			remoteInfo = APNGwatchOSDemo;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		9C39D4392180768E00593378 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				9C39D4242180768D00593378 /* APNGwatchOSDemo Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9C39D43B2180768E00593378 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				9C39D4332180768E00593378 /* APNGwatchOSDemo.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0A22F3AF5A684E6DCC634373 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		133518E9A01449310A71AA4A /* Pods-APNGwatchOSDemo Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-APNGwatchOSDemo Extension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-APNGwatchOSDemo Extension/Pods-APNGwatchOSDemo Extension.debug.xcconfig"; sourceTree = "<group>"; };
+		2822C4884BCDDF00ABAC6537 /* Pods_APNGwatchOSDemo_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_APNGwatchOSDemo_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C7446E508E058BC07B1E79F /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		4BA08294BCB85B6E7ED98A1A /* Pods-APNGwatchOSDemo Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-APNGwatchOSDemo Extension.release.xcconfig"; path = "Pods/Target Support Files/Pods-APNGwatchOSDemo Extension/Pods-APNGwatchOSDemo Extension.release.xcconfig"; sourceTree = "<group>"; };
 		50EB55EE6378F1F76A09DE02 /* Pods_APNGImageSerialization_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_APNGImageSerialization_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DEF27BC5F1D3616DBAB5FFD /* Pods-APNGImageSerialization_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-APNGImageSerialization_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-APNGImageSerialization_Tests/Pods-APNGImageSerialization_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* APNGImageSerialization_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = APNGImageSerialization_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -63,6 +114,18 @@
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		66968B0D4C1FE00C704E3D5B /* Pods_APNGImageSerialization_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_APNGImageSerialization_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		9C39D4172180768A00593378 /* APNGwatchOSDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = APNGwatchOSDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C39D41A2180768A00593378 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		9C39D41C2180768D00593378 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9C39D41E2180768D00593378 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9C39D4232180768D00593378 /* APNGwatchOSDemo Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "APNGwatchOSDemo Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C39D4282180768D00593378 /* InterfaceController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InterfaceController.h; sourceTree = "<group>"; };
+		9C39D4292180768D00593378 /* InterfaceController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InterfaceController.m; sourceTree = "<group>"; };
+		9C39D42B2180768D00593378 /* ExtensionDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExtensionDelegate.h; sourceTree = "<group>"; };
+		9C39D42C2180768D00593378 /* ExtensionDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExtensionDelegate.m; sourceTree = "<group>"; };
+		9C39D42E2180768E00593378 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9C39D4302180768E00593378 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9C39D43F218087A300593378 /* progress@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "progress@2x.png"; sourceTree = "<group>"; };
 		9C70A82F1DDD8F1900CE8403 /* o_sample@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "o_sample@2x.png"; sourceTree = "<group>"; };
 		9C70A8301DDD8F1900CE8403 /* clock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "clock@2x.png"; sourceTree = "<group>"; };
 		9C70A8331DDD997B00CE8403 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
@@ -95,6 +158,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		73610EFC483D60B738AF993E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9C39D4202180768D00593378 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2CD9AA710E40188BAED2D7DA /* Pods_APNGwatchOSDemo_Extension.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -105,6 +183,8 @@
 				C22C472ED21565621DD6097C /* Pods-APNGImageSerialization_Example.release.xcconfig */,
 				EF2560236B306EFB607517B5 /* Pods-APNGImageSerialization_Tests.debug.xcconfig */,
 				5DEF27BC5F1D3616DBAB5FFD /* Pods-APNGImageSerialization_Tests.release.xcconfig */,
+				133518E9A01449310A71AA4A /* Pods-APNGwatchOSDemo Extension.debug.xcconfig */,
+				4BA08294BCB85B6E7ED98A1A /* Pods-APNGwatchOSDemo Extension.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -115,6 +195,8 @@
 				60FF7A9C1954A5C5007DD14C /* Podspec Metadata */,
 				6003F593195388D20070C39A /* Example for APNGImageSerialization */,
 				6003F5B5195388D20070C39A /* Tests */,
+				9C39D4182180768A00593378 /* APNGwatchOSDemo */,
+				9C39D4272180768D00593378 /* APNGwatchOSDemo Extension */,
 				6003F58C195388D20070C39A /* Frameworks */,
 				6003F58B195388D20070C39A /* Products */,
 				5B2EF724FB6301C373C2954A /* Pods */,
@@ -126,6 +208,8 @@
 			children = (
 				6003F58A195388D20070C39A /* APNGImageSerialization_Example.app */,
 				6003F5AE195388D20070C39A /* APNGImageSerialization_Tests.xctest */,
+				9C39D4172180768A00593378 /* APNGwatchOSDemo.app */,
+				9C39D4232180768D00593378 /* APNGwatchOSDemo Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -140,6 +224,7 @@
 				6003F5AF195388D20070C39A /* XCTest.framework */,
 				66968B0D4C1FE00C704E3D5B /* Pods_APNGImageSerialization_Example.framework */,
 				50EB55EE6378F1F76A09DE02 /* Pods_APNGImageSerialization_Tests.framework */,
+				2822C4884BCDDF00ABAC6537 /* Pods_APNGwatchOSDemo_Extension.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -153,8 +238,8 @@
 				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
 				6003F5A5195388D20070C39A /* RTViewController.h */,
 				6003F5A6195388D20070C39A /* RTViewController.m */,
-				6003F5A8195388D20070C39A /* Images.xcassets */,
 				9C70A82F1DDD8F1900CE8403 /* o_sample@2x.png */,
+				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
 				9CE352F11DDEBA2700BC87E5 /* Launch.storyboard */,
 			);
@@ -202,6 +287,30 @@
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
 		};
+		9C39D4182180768A00593378 /* APNGwatchOSDemo */ = {
+			isa = PBXGroup;
+			children = (
+				9C39D4192180768A00593378 /* Interface.storyboard */,
+				9C39D41C2180768D00593378 /* Assets.xcassets */,
+				9C39D41E2180768D00593378 /* Info.plist */,
+			);
+			path = APNGwatchOSDemo;
+			sourceTree = "<group>";
+		};
+		9C39D4272180768D00593378 /* APNGwatchOSDemo Extension */ = {
+			isa = PBXGroup;
+			children = (
+				9C39D43F218087A300593378 /* progress@2x.png */,
+				9C39D4282180768D00593378 /* InterfaceController.h */,
+				9C39D4292180768D00593378 /* InterfaceController.m */,
+				9C39D42B2180768D00593378 /* ExtensionDelegate.h */,
+				9C39D42C2180768D00593378 /* ExtensionDelegate.m */,
+				9C39D42E2180768E00593378 /* Assets.xcassets */,
+				9C39D4302180768E00593378 /* Info.plist */,
+			);
+			path = "APNGwatchOSDemo Extension";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -214,10 +323,12 @@
 				6003F587195388D20070C39A /* Frameworks */,
 				6003F588195388D20070C39A /* Resources */,
 				113F192EFBD019B1B969346D /* [CP] Embed Pods Frameworks */,
+				9C39D43B2180768E00593378 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				9C39D4322180768E00593378 /* PBXTargetDependency */,
 			);
 			name = APNGImageSerialization_Example;
 			productName = APNGImageSerialization;
@@ -243,6 +354,43 @@
 			productReference = 6003F5AE195388D20070C39A /* APNGImageSerialization_Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		9C39D4162180768A00593378 /* APNGwatchOSDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9C39D43A2180768E00593378 /* Build configuration list for PBXNativeTarget "APNGwatchOSDemo" */;
+			buildPhases = (
+				9C39D4152180768A00593378 /* Resources */,
+				9C39D4392180768E00593378 /* Embed App Extensions */,
+				73610EFC483D60B738AF993E /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9C39D4262180768D00593378 /* PBXTargetDependency */,
+			);
+			name = APNGwatchOSDemo;
+			productName = APNGwatchOSDemo;
+			productReference = 9C39D4172180768A00593378 /* APNGwatchOSDemo.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		9C39D4222180768D00593378 /* APNGwatchOSDemo Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9C39D4382180768E00593378 /* Build configuration list for PBXNativeTarget "APNGwatchOSDemo Extension" */;
+			buildPhases = (
+				48E30BC19DFCEC7AF47205AF /* [CP] Check Pods Manifest.lock */,
+				9C39D41F2180768D00593378 /* Sources */,
+				9C39D4202180768D00593378 /* Frameworks */,
+				9C39D4212180768D00593378 /* Resources */,
+				11086960DB9CFD1BF7F52EB1 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "APNGwatchOSDemo Extension";
+			productName = "APNGwatchOSDemo Extension";
+			productReference = 9C39D4232180768D00593378 /* APNGwatchOSDemo Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -258,6 +406,16 @@
 					};
 					6003F5AD195388D20070C39A = {
 						TestTargetID = 6003F589195388D20070C39A;
+					};
+					9C39D4162180768A00593378 = {
+						CreatedOnToolsVersion = 10.0;
+						DevelopmentTeam = JRKXNW9FRX;
+						ProvisioningStyle = Automatic;
+					};
+					9C39D4222180768D00593378 = {
+						CreatedOnToolsVersion = 10.0;
+						DevelopmentTeam = JRKXNW9FRX;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -276,6 +434,8 @@
 			targets = (
 				6003F589195388D20070C39A /* APNGImageSerialization_Example */,
 				6003F5AD195388D20070C39A /* APNGImageSerialization_Tests */,
+				9C39D4162180768A00593378 /* APNGwatchOSDemo */,
+				9C39D4222180768D00593378 /* APNGwatchOSDemo Extension */,
 			);
 		};
 /* End PBXProject section */
@@ -302,9 +462,49 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9C39D4152180768A00593378 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9C39D41D2180768D00593378 /* Assets.xcassets in Resources */,
+				9C39D41B2180768A00593378 /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9C39D4212180768D00593378 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9C39D440218087A300593378 /* progress@2x.png in Resources */,
+				9C39D42F2180768E00593378 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		11086960DB9CFD1BF7F52EB1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-APNGwatchOSDemo Extension/Pods-APNGwatchOSDemo Extension-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/APNGImageSerialization-watchOS/APNGImageSerialization.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/APNGImageSerialization.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-APNGwatchOSDemo Extension/Pods-APNGwatchOSDemo Extension-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		113F192EFBD019B1B969346D /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -312,7 +512,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-APNGImageSerialization_Example/Pods-APNGImageSerialization_Example-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/APNGImageSerialization/APNGImageSerialization.framework",
+				"${BUILT_PRODUCTS_DIR}/APNGImageSerialization-iOS/APNGImageSerialization.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -321,6 +521,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-APNGImageSerialization_Example/Pods-APNGImageSerialization_Example-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		48E30BC19DFCEC7AF47205AF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-APNGwatchOSDemo Extension-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B16C72D722E1F33489779DD3 /* [CP] Check Pods Manifest.lock */ = {
@@ -380,6 +602,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9C39D41F2180768D00593378 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9C39D42D2180768D00593378 /* ExtensionDelegate.m in Sources */,
+				9C39D42A2180768D00593378 /* InterfaceController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -387,6 +618,16 @@
 			isa = PBXTargetDependency;
 			target = 6003F589195388D20070C39A /* APNGImageSerialization_Example */;
 			targetProxy = 6003F5B3195388D20070C39A /* PBXContainerItemProxy */;
+		};
+		9C39D4262180768D00593378 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9C39D4222180768D00593378 /* APNGwatchOSDemo Extension */;
+			targetProxy = 9C39D4252180768D00593378 /* PBXContainerItemProxy */;
+		};
+		9C39D4322180768E00593378 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9C39D4162180768A00593378 /* APNGwatchOSDemo */;
+			targetProxy = 9C39D4312180768E00593378 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -405,6 +646,14 @@
 				6003F5B9195388D20070C39A /* en */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		9C39D4192180768A00593378 /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9C39D41A2180768A00593378 /* Base */,
+			);
+			name = Interface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -587,6 +836,118 @@
 			};
 			name = Release;
 		};
+		9C39D4342180768E00593378 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = JRKXNW9FRX;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				IBSC_MODULE = APNGwatchOSDemo_Extension;
+				INFOPLIST_FILE = APNGwatchOSDemo/Info.plist;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.APNGImageSerialization-Example.watchkitapp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 3.0;
+			};
+			name = Debug;
+		};
+		9C39D4352180768E00593378 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = JRKXNW9FRX;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				IBSC_MODULE = APNGwatchOSDemo_Extension;
+				INFOPLIST_FILE = APNGwatchOSDemo/Info.plist;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.APNGImageSerialization-Example.watchkitapp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 3.0;
+			};
+			name = Release;
+		};
+		9C39D4362180768E00593378 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 133518E9A01449310A71AA4A /* Pods-APNGwatchOSDemo Extension.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = JRKXNW9FRX;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "APNGwatchOSDemo Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.APNGImageSerialization-Example.watchkitapp.watchkitextension";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 3.0;
+			};
+			name = Debug;
+		};
+		9C39D4372180768E00593378 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4BA08294BCB85B6E7ED98A1A /* Pods-APNGwatchOSDemo Extension.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = JRKXNW9FRX;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "APNGwatchOSDemo Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.APNGImageSerialization-Example.watchkitapp.watchkitextension";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 3.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -613,6 +974,24 @@
 			buildConfigurations = (
 				6003F5C3195388D20070C39A /* Debug */,
 				6003F5C4195388D20070C39A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9C39D4382180768E00593378 /* Build configuration list for PBXNativeTarget "APNGwatchOSDemo Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9C39D4362180768E00593378 /* Debug */,
+				9C39D4372180768E00593378 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9C39D43A2180768E00593378 /* Build configuration list for PBXNativeTarget "APNGwatchOSDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9C39D4342180768E00593378 /* Debug */,
+				9C39D4352180768E00593378 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

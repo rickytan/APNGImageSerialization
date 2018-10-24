@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'APNGImageSerialization'
-  s.version          = '0.2.1'
+  s.version          = '0.2.2'
   s.summary          = 'A wrapper for APNG support'
   s.description      = <<-DESC
 This project provide a simple way to encode and decode APNG file to animate UIImage. requires iOS 8+
@@ -13,6 +13,7 @@ This project provide a simple way to encode and decode APNG file to animate UIIm
   s.social_media_url = 'https://github.com/rickytan'
 
   s.ios.deployment_target = '8.0'
+  s.watchos.deployment_target = '3.0'
 
   s.source_files = 'APNGImageSerialization/Classes/**/*'
   s.public_header_files = 'APNGImageSerialization/Classes/**/*.h'

@@ -9,3 +9,8 @@ target 'APNGImageSerialization_Example' do
     
   end
 end
+
+target 'APNGwatchOSDemo Extension' do
+    platform :watchos, '3.0'
+    pod 'APNGImageSerialization', :path => '../'
+end

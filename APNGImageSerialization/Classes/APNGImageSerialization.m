@@ -34,9 +34,15 @@
 NSString * const APNGImageErrorDomain = @"APNGImageErrorDomain";
 
 
+#if TARGET_OS_IOS
+#define APNG_SCREEN_SCALE (UIScreen.mainScreen.scale)
+#elif TARGET_OS_WATCH
+#define APNG_SCREEN_SCALE (WKInterfaceDevice.currentDevice.screenScale)
+#endif
+
 __attribute((overloadable)) UIImage * UIAnimatedImageWithAPNGData(NSData *data)
 {
-    return UIAnimatedImageWithAPNGData(data, UIScreen.mainScreen.scale, 0.f, nil);
+    return UIAnimatedImageWithAPNGData(data, APNG_SCREEN_SCALE, 0.f, nil);
 }
 
 __attribute((overloadable)) UIImage * UIAnimatedImageWithAPNGData(NSData *data, CGFloat scale, NSTimeInterval duration, NSError * __autoreleasing * error)
@@ -99,7 +105,7 @@ __attribute((overloadable)) UIImage * UIAnimatedImageWithAPNGData(NSData *data, 
                 }
             }
             UIImage *image = [UIImage imageWithCGImage:imageRef
-                                                 scale:scale > 0.f ? scale : [UIScreen mainScreen].scale
+                                                 scale:scale > 0.f ? scale : APNG_SCREEN_SCALE
                                            orientation:UIImageOrientationUp];
             [frames addObject:image];
 
@@ -255,7 +261,7 @@ static NSString *APNGImageNameOfScale(NSString *name, CGFloat scale) {
 
 + (UIImage *)animatedImageNamed:(NSString *)name __attribute__((objc_method_family(new)))
 {
-    CGFloat scale = [UIScreen mainScreen].scale;
+    CGFloat scale = APNG_SCREEN_SCALE;
     NSString *extension = name.pathExtension;
     if (!extension.length) {
         extension = @"png";

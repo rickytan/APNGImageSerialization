@@ -1,5 +1,5 @@
 PODS:
-  - APNGImageSerialization (0.2.0)
+  - APNGImageSerialization (0.2.1)
 
 DEPENDENCIES:
   - APNGImageSerialization (from `../`)
@@ -9,8 +9,8 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  APNGImageSerialization: fb57b94753cd3a54c6ee85fca9d62fd62e24aa9b
+  APNGImageSerialization: 88536e3fcd1d04c9fa5e18fdcf9002f6a5ed7e72
 
-PODFILE CHECKSUM: 4e8b433416635b77c51254422e53ae39a0a08f16
+PODFILE CHECKSUM: db77776627b2afb1f7561560c35464ec83509565
 
-COCOAPODS: 1.5.2
+COCOAPODS: 1.5.3
