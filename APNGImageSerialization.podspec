@@ -17,5 +17,5 @@ This project provide a simple way to encode and decode APNG file to animate UIIm
 
   s.source_files = 'APNGImageSerialization/Classes/**/*'
   s.public_header_files = 'APNGImageSerialization/Classes/**/*.h'
-  s.frameworks = 'UIKit', 'MobileCoreServices', 'ImageIO'
+  s.frameworks = 'UIKit', 'CoreServices', 'ImageIO'
 end
