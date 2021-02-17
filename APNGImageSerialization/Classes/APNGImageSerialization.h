@@ -20,6 +20,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+#import <Foundation/Foundation.h>
 #if TARGET_OS_IOS
 #import <UIKit/UIKit.h>
 #elif TARGET_OS_WATCH
