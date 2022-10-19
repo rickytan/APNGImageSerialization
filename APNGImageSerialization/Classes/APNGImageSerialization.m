@@ -320,7 +320,7 @@ static inline void apng_swizzleSelector(Class class, SEL originalSelector, SEL s
 
 #pragma mark -
 
-+ (UIImage *)apng_imageWithContentsOfFile:(NSString *)path __attribute__((objc_method_family(new)))
++ (UIImage *)apng_imageWithContentsOfFile:(NSString *)path
 {
     if (path) {
         NSData *data = [NSData dataWithContentsOfFile:path];
@@ -338,7 +338,7 @@ static inline void apng_swizzleSelector(Class class, SEL originalSelector, SEL s
     return [self apng_imageWithContentsOfFile:path];
 }
 
-+ (UIImage *)apng_animatedImageWithAPNGData:(NSData *)data __attribute__((objc_method_family(new)))
++ (UIImage *)apng_animatedImageWithAPNGData:(NSData *)data
 {
     if (AnimatedPngDataIsValid(data)) {
         return UIAnimatedImageWithAPNGData(data);
@@ -348,7 +348,7 @@ static inline void apng_swizzleSelector(Class class, SEL originalSelector, SEL s
 
 }
 
-+ (UIImage *)apng_animatedImageWithAPNGData:(NSData *)data scale:(CGFloat)scale __attribute__((objc_method_family(new)))
++ (UIImage *)apng_animatedImageWithAPNGData:(NSData *)data scale:(CGFloat)scale
 {
     if (AnimatedPngDataIsValid(data)) {
         return UIAnimatedImageWithAPNGData(data, scale, 0.0f, nil);
@@ -359,7 +359,7 @@ static inline void apng_swizzleSelector(Class class, SEL originalSelector, SEL s
 
 #pragma mark -
 
-- (id)apng_initWithContentsOfFile:(NSString *)path __attribute__((objc_method_family(init))) {
+- (instancetype)apng_initWithContentsOfFile:(NSString *)path __attribute__((objc_method_family(init))) {
     NSData *data = [NSData dataWithContentsOfFile:path];
     if (AnimatedPngDataIsValid(data)) {
         if ([[path stringByDeletingPathExtension] hasSuffix:@"@3x"]) {
@@ -374,7 +374,7 @@ static inline void apng_swizzleSelector(Class class, SEL originalSelector, SEL s
     return [self apng_initWithContentsOfFile:path];
 }
 
-- (id)apng_initWithData:(NSData *)data __attribute__((objc_method_family(init))) {
+- (instancetype)apng_initWithData:(NSData *)data __attribute__((objc_method_family(init))) {
     if (AnimatedPngDataIsValid(data)) {
         return UIAnimatedImageWithAPNGData(data);
     }
@@ -382,8 +382,8 @@ static inline void apng_swizzleSelector(Class class, SEL originalSelector, SEL s
     return [self apng_initWithData:data];
 }
 
-- (id)apng_initWithData:(NSData *)data
-                  scale:(CGFloat)scale __attribute__((objc_method_family(init)))
+- (instancetype)apng_initWithData:(NSData *)data
+                            scale:(CGFloat)scale __attribute__((objc_method_family(init)))
 {
     if (AnimatedPngDataIsValid(data)) {
         return UIAnimatedImageWithAPNGData(data, scale, 0.0f, nil);

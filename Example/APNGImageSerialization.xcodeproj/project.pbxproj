@@ -488,21 +488,17 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-APNGwatchOSDemo Extension/Pods-APNGwatchOSDemo Extension-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-APNGwatchOSDemo Extension/Pods-APNGwatchOSDemo Extension-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/APNGImageSerialization-watchOS/APNGImageSerialization.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/APNGImageSerialization.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-APNGwatchOSDemo Extension/Pods-APNGwatchOSDemo Extension-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-APNGwatchOSDemo Extension/Pods-APNGwatchOSDemo Extension-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		113F192EFBD019B1B969346D /* [CP] Embed Pods Frameworks */ = {
@@ -511,7 +507,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-APNGImageSerialization_Example/Pods-APNGImageSerialization_Example-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-APNGImageSerialization_Example/Pods-APNGImageSerialization_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/APNGImageSerialization-iOS/APNGImageSerialization.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -520,7 +516,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-APNGImageSerialization_Example/Pods-APNGImageSerialization_Example-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-APNGImageSerialization_Example/Pods-APNGImageSerialization_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		48E30BC19DFCEC7AF47205AF /* [CP] Check Pods Manifest.lock */ = {
